@@ -1,0 +1,1 @@
+{ "rewrites": [{ "source": "/((?!wp-content|assets).*)", "destination": "/index.html" }] }

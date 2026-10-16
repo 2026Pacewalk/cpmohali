@@ -1,0 +1,33 @@
+server {
+    listen ${PORT};
+    listen [::]:${PORT};
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    gzip on;
+    gzip_comp_level 6;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css application/javascript application/json image/svg+xml application/xml text/xml;
+
+    # Hashed build assets never change
+    location /assets/ {
+        try_files $uri =404;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    # Mirrored WordPress media (same URLs as the old site); real 404s, no SPA fallback
+    location /wp-content/ {
+        try_files $uri =404;
+        add_header Cache-Control "public, max-age=2592000";
+    }
+
+    location = /sitemap.xml { default_type application/xml; try_files $uri =404; }
+    location = /robots.txt  { try_files $uri =404; }
+
+    # Single-page app: every route (e.g. /about-us/) is handled by React Router
+    location / {
+        try_files $uri /index.html;
+        add_header Cache-Control "no-cache";
+    }
+}
