@@ -1,4 +1,4 @@
-# ---- Build the static site ----
+# ---- Build the React site ----
 FROM node:20.18.1-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -7,10 +7,15 @@ COPY . .
 # prebuild regenerates public/sitemap.xml + robots.txt
 RUN npm run build
 
-# ---- Serve with nginx ----
-FROM nginx:1.27.3-alpine
-# Railway injects $PORT; nginx's entrypoint substitutes it into the template below
+# ---- Runtime: Node serves dist/ + the leads API ----
+FROM node:20.18.1-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev --no-audit --no-fund
+COPY server ./server
+COPY --from=build /app/dist ./dist
 ENV PORT=8080
-COPY nginx.conf.template /etc/nginx/templates/default.conf.template
-COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 8080
+USER node
+CMD ["node", "server/index.js"]

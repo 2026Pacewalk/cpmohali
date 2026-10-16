@@ -5,6 +5,7 @@ import { ChevronRight, Plus, Play, X, ChevronLeft, Phone, Mail, MapPin, Send, Ar
 import { site, tel } from '../data/site';
 import { WhatsApp } from './Icons';
 import seo from '../data/seo.json';
+import { submitLead } from '../lib/leads';
 
 /* ---------- SEO (React 19 hoists these into <head>) ---------- */
 export function Seo({ slug, title, description }) {
@@ -209,11 +210,13 @@ export function ContactForm({ compact }) {
   const up = k => e => setF({ ...f, [k]: e.target.value });
   const submit = e => {
     e.preventDefault();
-    const text = `Hello Career Point Gurukul,%0A%0AStudent Name: ${f.name}%0AMobile: ${f.phone}%0AEmail: ${f.email}%0ACurrently Studying in: ${f.cls}%0AMessage: ${f.msg}`;
-    window.open(`https://wa.me/${site.whatsappNumber}?text=${text.replace(/ /g, '%20')}`, '_blank', 'noopener');
+    submitLead({ name: f.name, phone: f.phone, email: f.email, studentClass: f.cls.replace(/ Class$/, ''), message: f.msg, source: 'contact-form', website: e.currentTarget.website?.value });
+    const text = ['Hello Career Point Gurukul,', '', `Student Name: ${f.name}`, `Mobile: ${f.phone}`, f.email && `Email: ${f.email}`, `Currently Studying in: ${f.cls}`, f.msg && `Message: ${f.msg}`].filter(x => x !== false && x !== '').join('\n');
+    window.open(`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
   };
   return (
     <form onSubmit={submit} className="form-grid">
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />
       <div className="field"><label htmlFor="cf-n">Student Name</label><input id="cf-n" required value={f.name} onChange={up('name')} placeholder="Student Name" /></div>
       <div className="field"><label htmlFor="cf-p">Mobile Number</label><input id="cf-p" required type="tel" pattern="[0-9+\- ]{10,15}" value={f.phone} onChange={up('phone')} placeholder="Mobile Number" /></div>
       {!compact && <div className="field"><label htmlFor="cf-e">Email</label><input id="cf-e" type="email" value={f.email} onChange={up('email')} placeholder="Email address" /></div>}

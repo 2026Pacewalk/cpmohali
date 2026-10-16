@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { site, tel, UP } from '../data/site';
 import { WhatsApp } from './Icons';
+import { submitLead } from '../lib/leads';
 
 /* Open from anywhere: window.dispatchEvent(new Event('open-enquiry')) */
 export const openEnquiry = () => window.dispatchEvent(new Event('open-enquiry'));
@@ -87,6 +88,7 @@ export default function EnquiryPopup() {
     e.preventDefault();
     setTouched(true);
     if (!nameOk || !phoneOk || !f.cls) return;
+    submitLead({ name: f.name.trim(), phone: f.phone, studentClass: f.cls, source: 'popup', website: e.currentTarget.website?.value });
     const lines = [
       'Hello Career Point Gurukul, I would like a call back about admission.',
       `Student Name: ${f.name.trim()}`,
@@ -136,6 +138,7 @@ export default function EnquiryPopup() {
                       <p className="eq-sub">Share a few details — our admission counsellor will call you back.</p>
 
                           <form onSubmit={submit} noValidate>
+                            <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />
                             <label className={`eq-field ${touched && !nameOk ? 'err' : ''}`}>
                               <span>Student Name</span>
                               <input ref={nameRef} value={f.name} onChange={up('name')} placeholder="e.g. Ankita Sharma" autoComplete="name" />

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import EnquiryPopup from './EnquiryPopup';
+import { submitLead } from '../lib/leads';
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import { ChevronRight, Phone, Mail, MapPin, ArrowUp, FileText, Award, ShieldCheck, Trees, Building2 } from 'lucide-react';
 import { site, footerLinks, tel } from '../data/site';
@@ -22,6 +23,7 @@ function UpdatesSignup() {
   const [phone, setPhone] = useState('');
   const submit = e => {
     e.preventDefault();
+    submitLead({ phone, source: 'footer-updates', message: 'Wants admission & scholarship updates on WhatsApp' });
     const text = encodeURIComponent(`Hello Career Point Gurukul, please send me admission & scholarship updates. My number: ${phone}`);
     window.open(`https://wa.me/${site.whatsappNumber}?text=${text}`, '_blank', 'noopener');
   };

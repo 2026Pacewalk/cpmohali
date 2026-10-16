@@ -8,12 +8,13 @@ const internal = /\.railway\.internal/.test(DATABASE_URL);
 export const pool = new pg.Pool({
   connectionString: DATABASE_URL,
   ssl: internal || /localhost|127\.0\.0\.1/.test(DATABASE_URL) ? false : { rejectUnauthorized: false },
-  max: 10,
+  max: Number(process.env.PG_POOL_MAX) || 10, // local PGlite test DB allows one connection: PG_POOL_MAX=1
 });
 
 export const q = (text, params) => pool.query(text, params);
 
 export const STATUSES = ['new', 'contacted', 'follow_up', 'visit_scheduled', 'visited', 'admitted', 'not_interested'];
+export const STATUS_LABELS = { new: 'New', contacted: 'Contacted', follow_up: 'Follow-up', visit_scheduled: 'Visit scheduled', visited: 'Visited', admitted: 'Admitted', not_interested: 'Not interested' };
 export const SOURCES = ['popup', 'contact-form', 'footer-updates', 'other'];
 
 export async function migrate() {

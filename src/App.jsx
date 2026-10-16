@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -8,6 +9,9 @@ import Blog from './pages/Blog';
 import Post from './pages/Post';
 import Sitemap from './pages/Sitemap';
 import { posts } from './components/ui';
+
+// Admin panel is code-split: public visitors never download it
+const AdminApp = lazy(() => import('./admin/AdminApp'));
 
 const ABOUT = [{ label: 'About Us', to: '/about-us/' }];
 const CONCEPT = [{ label: 'CP-Gurukul Concept', to: '/cp-gurukul/' }];
@@ -40,6 +44,7 @@ const generic = [
 export default function App() {
   return (
     <Routes>
+      <Route path="admin/*" element={<Suspense fallback={null}><AdminApp /></Suspense>} />
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="home-2" element={<Navigate to="/" replace />} />

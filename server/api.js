@@ -1,5 +1,5 @@
 import express from 'express';
-import { q, pool, STATUSES, SOURCES } from './db.js';
+import { q, pool, STATUSES, STATUS_LABELS, SOURCES } from './db.js';
 import {
   requireAuth, requireAdmin, issueToken, setSessionCookie, clearSessionCookie, publicUser,
   hashPassword, checkPassword, passwordProblem, rateLimit,
@@ -8,6 +8,7 @@ import {
 const api = express.Router();
 api.use(express.json({ limit: '32kb' }));
 const wrap = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+const SOURCE_LABELS = { popup: 'website popup', 'contact-form': 'contact form', 'footer-updates': 'footer WhatsApp updates', other: 'website' };
 const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
 
 /* ------------------------------------------------------------------ */
@@ -39,7 +40,7 @@ api.post('/leads', rateLimit('lead', 8, 10 * 60e3), wrap(async (req, res) => {
     await q(`UPDATE leads SET name = CASE WHEN $2 <> 'Website visitor' THEN $2 ELSE name END, email = COALESCE($3, email),
              student_class = COALESCE($4, student_class), programs = $5, message = COALESCE($6, message), updated_at = now() WHERE id = $1`,
       [r.id, lead.name, lead.email, lead.student_class, [...new Set([...r.programs, ...lead.programs])], lead.message]);
-    await q(`INSERT INTO lead_notes (lead_id, kind, body) VALUES ($1,'system',$2)`, [r.id, `Submitted again via ${lead.source}`]);
+    await q(`INSERT INTO lead_notes (lead_id, kind, body) VALUES ($1,'system',$2)`, [r.id, `Submitted again via ${SOURCE_LABELS[lead.source] || lead.source}`]);
     return res.status(200).json({ ok: true, id: r.id, merged: true });
   }
   const { rows } = await q(
@@ -137,7 +138,7 @@ api.patch('/leads/:id', wrap(async (req, res) => {
 
   if (b.status !== undefined && b.status !== cur.status) {
     if (!STATUSES.includes(b.status)) return res.status(400).json({ error: 'Unknown status' });
-    set('status', b.status); logs.push(`Status: ${cur.status} → ${b.status}`);
+    set('status', b.status); logs.push(`Status: ${STATUS_LABELS[cur.status] || cur.status} → ${STATUS_LABELS[b.status]}`);
   }
   if (b.assigned_to !== undefined && (b.assigned_to || null) !== cur.assigned_to) {
     let name = 'nobody';

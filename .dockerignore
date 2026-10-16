@@ -4,3 +4,4 @@ media-originals
 .git
 .claude
 *.log
+.env

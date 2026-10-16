@@ -25,3 +25,6 @@ dist-ssr
 
 # full-size original videos (not deployed)
 media-originals
+
+# local secrets
+.env

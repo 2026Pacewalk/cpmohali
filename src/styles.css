@@ -1390,3 +1390,6 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
 
 .eq-group.err .eq-chipset button { border-color: rgba(225,29,42,.45); }
 .eq-group small.eq-err { display: block; margin-top: 5px; color: var(--red); font-size: .76rem; }
+
+/* honeypot field for spam bots: invisible to people */
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
