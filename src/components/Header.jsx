@@ -10,6 +10,7 @@ import { nav, site, tel, UP } from '../data/site';
 import { sitemapGroups } from '../data/sitemap';
 import { posts } from './ui';
 import { socialIcon, WhatsApp } from './Icons';
+import { openEnquiry } from './EnquiryPopup';
 
 /* Short helper text + icons for every menu link (mega menu & mobile menu) */
 const INFO = {
@@ -342,7 +343,7 @@ export default function Header() {
               <Search /><kbd>Ctrl K</kbd>
             </button>
             <a className="icon-btn call-btn" href={tel(site.phones[0])} aria-label="Call admissions"><Phone /></a>
-            <a className="btn sm desktop apply" href={site.wa.register} target="_blank" rel="noreferrer"><WhatsApp /> Apply Now</a>
+            <button className="btn sm desktop apply" onClick={openEnquiry}><WhatsApp /> Apply Now</button>
             <button className="burger" onClick={() => setDrawer(true)} aria-label="Open menu" aria-expanded={drawer}><Menu /></button>
           </div>
         </div>

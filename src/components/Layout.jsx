@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
+import EnquiryPopup from './EnquiryPopup';
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import { ChevronRight, Phone, Mail, MapPin, ArrowUp, FileText, Award, ShieldCheck, Trees, Building2 } from 'lucide-react';
 import { site, footerLinks, tel } from '../data/site';
@@ -142,6 +143,7 @@ export default function Layout() {
       <main id="main"><Outlet /></main>
       <Footer />
       <Floating />
+      <EnquiryPopup />
     </>
   );
 }
