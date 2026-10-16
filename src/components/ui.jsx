@@ -117,8 +117,8 @@ export function Video({ src, portrait, poster }) {
 }
 
 /* ---------- FAQ ---------- */
-export function Faq({ items }) {
-  const [open, setOpen] = useState(0);
+export function Faq({ items, defaultOpen = 0 }) {
+  const [open, setOpen] = useState(defaultOpen);
   return (
     <div className="faq">
       {items.map((it, i) => (

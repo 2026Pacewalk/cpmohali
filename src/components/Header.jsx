@@ -339,8 +339,8 @@ export default function Header() {
             </ul>
           </nav>
           <div className="header-cta">
-            <button className="icon-btn search-btn" onClick={() => setSearch(true)} aria-label="Search (Ctrl+K)">
-              <Search /><kbd>Ctrl K</kbd>
+            <button className="icon-btn search-btn" onClick={() => setSearch(true)} aria-label="Search (Ctrl+K)" title="Search  (Ctrl + K)">
+              <Search />
             </button>
             <a className="icon-btn call-btn" href={tel(site.phones[0])} aria-label="Call admissions"><Phone /></a>
             <button className="btn sm desktop apply" onClick={openEnquiry}><WhatsApp /> Apply Now</button>

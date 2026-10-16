@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  X, Lock, ArrowRight, ArrowLeft, Check, Phone, School, Target, Users, Trophy, Trees, ShieldCheck, Sparkles,
+  X, Lock, Check, Phone, School, Target, Users, Trophy, Trees, ShieldCheck, Sparkles,
   BookOpenCheck, BedDouble, PartyPopper,
 } from 'lucide-react';
 import { site, tel, UP } from '../data/site';
@@ -23,7 +23,6 @@ const CHIPS = [
   [Trophy, 'Holistic Growth'],
 ];
 const CLASSES = ['6th', '7th', '8th', '9th', '10th', '11th', '12th'];
-const PROGRAMS = ['IIT-JEE', 'NEET', 'NDA', 'CA Foundation', 'Study Abroad', 'Pre-Foundation'];
 
 const DISMISS_KEY = 'cpg-enquiry-dismissed';
 const SEEN_KEY = 'cpg-enquiry-seen';
@@ -37,7 +36,7 @@ export default function EnquiryPopup() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0); // 0 details, 1 preferences, 2 done
-  const [f, setF] = useState({ name: '', phone: '', cls: '', programs: [], msg: '' });
+  const [f, setF] = useState({ name: '', phone: '', cls: '' });
   const [touched, setTouched] = useState(false);
   const nameRef = useRef(null);
 
@@ -84,20 +83,16 @@ export default function EnquiryPopup() {
   }, [open, close]);
 
   const up = k => e => setF({ ...f, [k]: k === 'phone' ? e.target.value.replace(/\D/g, '').slice(0, 10) : e.target.value });
-  const toggleProgram = p => setF(s => ({ ...s, programs: s.programs.includes(p) ? s.programs.filter(x => x !== p) : [...s.programs, p] }));
-
-  const next = e => { e.preventDefault(); setTouched(true); if (nameOk && phoneOk) setStep(1); };
   const submit = e => {
     e.preventDefault();
+    setTouched(true);
+    if (!nameOk || !phoneOk || !f.cls) return;
     const lines = [
       'Hello Career Point Gurukul, I would like a call back about admission.',
-      '',
       `Student Name: ${f.name.trim()}`,
       `Mobile: +91 ${f.phone}`,
-      f.cls && `Currently Studying in: ${f.cls} Class`,
-      f.programs.length && `Interested in: ${f.programs.join(', ')}`,
-      f.msg.trim() && `Message: ${f.msg.trim()}`,
-    ].filter(Boolean);
+      `Currently Studying in: ${f.cls} Class`,
+    ];
     window.open(`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
     setStep(2);
   };
@@ -140,15 +135,7 @@ export default function EnquiryPopup() {
                       <h2 id="eq-title">Request a <em>Call</em></h2>
                       <p className="eq-sub">Share a few details — our admission counsellor will call you back.</p>
 
-                      <div className="eq-steps" aria-hidden>
-                        <span className={step >= 0 ? 'on' : ''}><b>1</b> Student details</span>
-                        <i className={step >= 1 ? 'on' : ''} />
-                        <span className={step >= 1 ? 'on' : ''}><b>2</b> Preferences</span>
-                      </div>
-
-                      <AnimatePresence mode="wait" initial={false}>
-                        {step === 0 ? (
-                          <motion.form key="s1" onSubmit={next} noValidate initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                          <form onSubmit={submit} noValidate>
                             <label className={`eq-field ${touched && !nameOk ? 'err' : ''}`}>
                               <span>Student Name</span>
                               <input ref={nameRef} value={f.name} onChange={up('name')} placeholder="e.g. Ankita Sharma" autoComplete="name" />
@@ -163,33 +150,15 @@ export default function EnquiryPopup() {
                               </div>
                               {touched && !phoneOk ? <small id="eq-ph">Enter a valid 10-digit Indian mobile number</small> : <small id="eq-ph" className="hint">{f.phone.length}/10 digits</small>}
                             </label>
-                            <button className="btn eq-next" type="submit">Continue <ArrowRight /></button>
-                          </motion.form>
-                        ) : (
-                          <motion.form key="s2" onSubmit={submit} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
-                            <div className="eq-group">
+                            <div className={`eq-group ${touched && !f.cls ? 'err' : ''}`}>
                               <span>Currently Studying in ?</span>
                               <div className="eq-chipset" role="radiogroup" aria-label="Current class">
                                 {CLASSES.map(c => <button type="button" role="radio" aria-checked={f.cls === c} key={c} className={f.cls === c ? 'on' : ''} onClick={() => setF({ ...f, cls: c })}>{c}</button>)}
                               </div>
+                              {touched && !f.cls && <small className="eq-err">Please choose the class</small>}
                             </div>
-                            <div className="eq-group">
-                              <span>Interested in <small>(choose any)</small></span>
-                              <div className="eq-chipset wide">
-                                {PROGRAMS.map(p => <button type="button" aria-pressed={f.programs.includes(p)} key={p} className={f.programs.includes(p) ? 'on' : ''} onClick={() => toggleProgram(p)}>{f.programs.includes(p) && <Check size={14} />}{p}</button>)}
-                              </div>
-                            </div>
-                            <label className="eq-field">
-                              <span>Your message <small>(optional)</small></span>
-                              <textarea value={f.msg} onChange={up('msg')} rows={2} placeholder="Any question for us…" />
-                            </label>
-                            <div className="eq-actions">
-                              <button type="button" className="eq-back" onClick={() => setStep(0)} aria-label="Back"><ArrowLeft /></button>
-                              <button className="btn eq-submit" type="submit"><WhatsApp /> Submit Enquiry</button>
-                            </div>
-                          </motion.form>
-                        )}
-                      </AnimatePresence>
+                            <button className="btn eq-next" type="submit"><WhatsApp /> Submit Enquiry</button>
+                          </form>
                     </motion.div>
                   ) : (
                     <motion.div key="done" className="eq-done" initial={{ opacity: 0, scale: .95 }} animate={{ opacity: 1, scale: 1 }}>

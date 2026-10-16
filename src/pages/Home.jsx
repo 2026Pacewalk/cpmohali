@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronLeft, ChevronRight, MessageCircle, Sparkles, Phone } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, MessageCircle, Sparkles, Phone, Play, Trophy, X } from 'lucide-react';
 import pages from '../data/pages.json';
 import { site, UP } from '../data/site';
 import { Seo, Reveal, SectionHead, Stamp, Ring, Video, Faq, Testimonials, ContactSection, BlogSection, useLightbox } from '../components/ui';
 import { Rail } from '../components/Blocks';
 import { WhatsApp } from '../components/Icons';
+import { openEnquiry } from '../components/EnquiryPopup';
 
 const B = pages['home-2'].blocks;
 const ofType = t => B.filter(b => b.t === t);
@@ -58,58 +59,134 @@ const life = [
   { img: `${UP}/2025/09/thumb.jpg`, t: 'Cleanliness Activity' },
 ];
 
+const ROTATE = ['IIT-JEE', 'NEET', 'NDA', 'CA Foundation', 'Study Abroad', 'Olympiads'];
+const HERO_BG = `${UP}/2025/12/0N2A0751-2048x1152.jpg`;
+
+function useIsNarrow(px = 640) {
+  const [n, setN] = useState(() => typeof window !== 'undefined' && window.innerWidth <= px);
+  useEffect(() => {
+    const on = () => setN(window.innerWidth <= px);
+    window.addEventListener('resize', on);
+    return () => window.removeEventListener('resize', on);
+  }, [px]);
+  return n;
+}
+
+function TourModal({ onClose }) {
+  useEffect(() => {
+    const k = e => e.key === 'Escape' && onClose();
+    document.addEventListener('keydown', k); document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', k); document.body.style.overflow = ''; };
+  }, [onClose]);
+  return (
+    <motion.div className="tour-bg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
+      <motion.div className="tour" initial={{ scale: .92, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: .95, opacity: 0 }} onClick={e => e.stopPropagation()}>
+        <button className="tour-x" onClick={onClose} aria-label="Close video"><X /></button>
+        <div className="video"><iframe src="https://www.youtube-nocookie.com/embed/qqIIUznuza8?autoplay=1&rel=0" title="Career Point Gurukul campus tour" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function Hero() {
+  const narrow = useIsNarrow();
   const [i, setI] = useState(0);
+  const [w, setW] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [tour, setTour] = useState(false);
+  const n = heroSlides.length;
+
+  useEffect(() => { const t = setInterval(() => setW(x => (x + 1) % ROTATE.length), 2200); return () => clearInterval(t); }, []);
   useEffect(() => {
     if (paused) return;
-    const t = setTimeout(() => setI(x => (x + 1) % heroSlides.length), 5200);
+    const t = setTimeout(() => setI(x => (x + 1) % n), 5000);
     return () => clearTimeout(t);
-  }, [i, paused]);
-  const go = d => setI(x => (x + d + heroSlides.length) % heroSlides.length);
-  const words = { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 } };
+  }, [i, paused, n]);
+  const go = d => setI(x => (x + d + n) % n);
+
+  const word = { hidden: { opacity: 0, y: 40 }, show: k => ({ opacity: 1, y: 0, transition: { duration: .8, delay: .1 + k * .08, ease: [.2, .8, .2, 1] } }) };
+
   return (
-    <section className="hero">
-      <div className="hero-glow" style={{ width: 420, height: 420, background: '#f6c343', top: -120, left: -160 }} />
-      <div className="hero-glow" style={{ width: 380, height: 380, background: '#2f7bf5', bottom: -160, right: -100, opacity: .3 }} />
-      <div className="wrap hero-grid">
-        <div>
-          <motion.span className="eyebrow" {...words} transition={{ duration: .6 }}>Fully Residential CBSE School · Mohali</motion.span>
-          <motion.h1 {...words} transition={{ duration: .8, delay: .08 }}>
-            Schooling, <span className="script">coaching</span> &amp; a home — on <span className="under">one campus
-              <svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 2, 200 2, 298 12" stroke="#f6c343" strokeWidth="6" fill="none" strokeLinecap="round" /></svg>
-            </span>.
-          </motion.h1>
-          <motion.p className="lede" {...words} transition={{ duration: .8, delay: .18 }}>
-            Welcome to Career Point Gurukul Mohali, the best boarding school in Punjab, offering integrated coaching for JEE, NEET &amp; NDA with world-class facilities — a unit of legendary Career Point, Kota.
-          </motion.p>
-          <motion.div className="btn-row" {...words} transition={{ duration: .8, delay: .26 }}>
-            <a className="btn" href={site.wa.register} target="_blank" rel="noreferrer"><WhatsApp /> Register now - limited seats</a>
-            <Link className="btn ghost" to="/admission-guidelines/">Admission Guidelines <ArrowRight /></Link>
-          </motion.div>
-          <motion.ul className="hero-tags" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .5 }}>
-            {['IIT - JEE', 'NEET', 'NDA', 'Commerce', 'Study Abroad', 'Pre - Foundation'].map(t => <li key={t}>{t}</li>)}
-          </motion.ul>
-        </div>
-        <motion.div className="hero-visual" initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: .15 }}
-          onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-          <Stamp className="hero-stamp" />
-          {['desktop', 'mobile'].map(kind => (
-            <div className={`hero-frame ${kind}`} key={kind}>
-              <AnimatePresence initial={false}>
-                <motion.img key={i} src={kind === 'desktop' ? heroSlides[i].d : heroSlides[i].m} alt="Career Point Gurukul Mohali highlights"
-                  initial={{ opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: .9 }} />
+    <section className="hx">
+      <div className="hx-bg" aria-hidden><img src={HERO_BG} alt="" /></div>
+      <div className="hx-shade" aria-hidden />
+      <div className="hx-grain" aria-hidden />
+      <span className="hx-orb o1" aria-hidden /><span className="hx-orb o2" aria-hidden />
+      <Ring className="hx-ring" color="rgba(246,195,67,.22)" />
+
+      <div className="wrap hx-grid">
+        <div className="hx-copy">
+          <motion.span className="hx-pill" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
+            <i /> Admissions Open 2026-27 · Class 6th – 12th
+          </motion.span>
+          <h1>
+            {['Schooling,', 'coaching', '& a home —', 'on one campus.'].map((t, k) => (
+              <motion.span key={t} className={`hx-line ${k === 1 ? 'gold' : ''}`} variants={word} initial="hidden" animate="show" custom={k}>{t} </motion.span>
+            ))}
+          </h1>
+          <motion.div className="hx-rotate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .55 }}>
+            <span>Integrated preparation for</span>
+            <span className="hx-word">
+              <AnimatePresence mode="wait">
+                <motion.b key={ROTATE[w]} initial={{ y: '100%', opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: '-100%', opacity: 0 }} transition={{ duration: .35 }}>{ROTATE[w]}</motion.b>
               </AnimatePresence>
-              <div className="hero-arrows">
-                <button onClick={() => go(-1)} aria-label="Previous slide"><ChevronLeft /></button>
-                <button onClick={() => go(1)} aria-label="Next slide"><ChevronRight /></button>
-              </div>
-            </div>
-          ))}
-          <div className="hero-dots">{heroSlides.map((_, k) => <button key={k} className={k === i ? 'on' : ''} onClick={() => setI(k)} aria-label={`Slide ${k + 1}`} />)}</div>
-          <div className="hero-floating"><b>1993</b><small>Legacy of<br />Career Point, Kota</small></div>
+            </span>
+          </motion.div>
+          <motion.p className="hx-lede" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }}>
+            Welcome to Career Point Gurukul Mohali, the best boarding school in Punjab — CBSE schooling with expert faculty from Kota, AC hostels and a 14-acre green campus near Chandigarh.
+          </motion.p>
+          <motion.div className="hx-ctas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .75 }}>
+            <button className="btn gold hx-apply" onClick={openEnquiry}>Apply Now <ArrowRight /></button>
+            <button className="hx-play" onClick={() => setTour(true)}>
+              <span className="hx-play-ico"><Play fill="currentColor" /></span>
+              <span><b>Watch campus tour</b><small>2 min video</small></span>
+            </button>
+          </motion.div>
+        </div>
+
+        {/* 3D banner stack */}
+        <motion.div className="hx-stage" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .9, delay: .2 }}
+          onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+          <div className={`hx-stack ${narrow ? 'sq' : ''}`}>
+            {heroSlides.map((s, k) => {
+              const off = (k - i + n) % n;
+              const visible = off < 3;
+              return (
+                <motion.div key={k} className="hx-card"
+                  style={{ zIndex: n - off, pointerEvents: off === 0 ? 'auto' : 'none' }}
+                  animate={{ x: off * 26, y: off * -22, scale: 1 - off * .06, rotate: off * 2.5, opacity: visible ? 1 - off * .25 : 0 }}
+                  transition={{ type: 'spring', stiffness: 220, damping: 26 }}
+                  drag={off === 0 ? 'x' : false} dragConstraints={{ left: 0, right: 0 }} dragElastic={.6}
+                  onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 70) go(info.offset.x < 0 ? 1 : -1); }}>
+                  <img src={narrow ? s.m : s.d} alt="Career Point Gurukul Mohali highlights" draggable={false} />
+                </motion.div>
+              );
+            })}
+          </div>
+          <div className="hx-controls">
+            <button onClick={() => go(-1)} aria-label="Previous slide"><ChevronLeft /></button>
+            <div className="hx-dots">{heroSlides.map((_, k) => <button key={k} className={k === i ? 'on' : ''} onClick={() => setI(k)} aria-label={`Slide ${k + 1}`}>{k === i && !paused && <span key={i} className="fill" />}</button>)}</div>
+            <button onClick={() => go(1)} aria-label="Next slide"><ChevronRight /></button>
+          </div>
+          <motion.div className="hx-toast" initial={{ opacity: 0, y: 20, scale: .9 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 1.1, type: 'spring' }}>
+            <span className="hx-toast-ico"><Trophy /></span>
+            <span><small>NEET 2026 achievers</small><b>Ankita · 624/720</b></span>
+          </motion.div>
+          <Stamp className="hx-stamp" />
         </motion.div>
       </div>
+
+      {/* Glass stats bar */}
+      <div className="wrap">
+        <motion.div className="hx-stats" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .9, duration: .7 }}>
+          <div><b>1993</b><span>Career Point legacy, Kota</span></div>
+          <div><b>30K<em>+</em></b><span>Students taught every year</span></div>
+          <div><b>14<em> acre</em></b><span>Lush green campus</span></div>
+          <div><b>CBSE</b><span>Affiliation No: 1631077</span></div>
+        </motion.div>
+      </div>
+
+      <AnimatePresence>{tour && <TourModal onClose={() => setTour(false)} />}</AnimatePresence>
     </section>
   );
 }
@@ -393,17 +470,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ — compact: header row + two independent columns */}
       <section className="section bg-white">
-        <div className="wrap faq-layout">
-          <div className="sticky">
+        <div className="wrap">
+          <div className="head-row">
             <SectionHead eyebrow="FAQ" title={<>Frequently asked <em className="accent">Questions</em></>} />
-            <Reveal>
+            <Reveal className="faq-ask">
               <h3>Still have Questions?</h3>
               <a className="btn" href={site.wa.principal} target="_blank" rel="noreferrer"><MessageCircle /> Chat with principal directly!</a>
             </Reveal>
           </div>
-          <Reveal><Faq items={faqs} /></Reveal>
+          <Reveal className="faq-compact">
+            <Faq items={faqs.slice(0, Math.ceil(faqs.length / 2))} />
+            <Faq items={faqs.slice(Math.ceil(faqs.length / 2))} defaultOpen={-1} />
+          </Reveal>
         </div>
       </section>
 
