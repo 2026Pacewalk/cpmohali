@@ -22,8 +22,11 @@ npm run build    # outputs dist/
 - `public/sitemap.xml` + `public/robots.txt` are generated from `src/data/sitemap.js` and the blog posts by `npm run sitemap`; this also runs automatically before `npm run build`. Add new pages to `src/data/sitemap.js`.
 
 ## Deploy
-SPA fallbacks are included: `public/.htaccess` (Apache/cPanel), `public/_redirects` (Netlify), `vercel.json` (Vercel).
-Note: 4 MP4 videos in `public/wp-content/uploads` total ~450 MB; compress them or host on YouTube before deploying to hosts with file-size limits (e.g. Vercel 100 MB).
+**Live on Railway:** https://web-production-d6d3b.up.railway.app (project `cpmohali-site`, service `web`).
+Railway builds the `Dockerfile` (Node build -> nginx, config in `nginx.conf.template`) from GitHub `2026Pacewalk/cpmohali-site`; every push to `main` redeploys automatically.
+
+Other hosts: SPA fallbacks are included: `public/.htaccess` (Apache/cPanel), `public/_redirects` (Netlify), `vercel.json` (Vercel).
+Videos are web-optimised 720p copies; the full-size 4K originals (and pre-optimisation images) are kept locally in `media-originals/`, which is not committed or deployed.
 
 ## Forms
 Enquiry / updates forms open WhatsApp pre-filled to +91 70872 28881 (no backend needed).
