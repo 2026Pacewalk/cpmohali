@@ -61,6 +61,8 @@ const life = [
 
 // Campus tour: YouTube Short (vertical), used in the hero pop-up and the Campus Tour section
 const TOUR_ID = '0T7u0xO5q4g';
+// Campus Tour section shows two Shorts side by side (left, right)
+const TOUR_SHORTS = ['JzMI7B9VF9I', TOUR_ID];
 
 const ROTATE = ['IIT-JEE', 'NEET', 'NDA', 'CA Foundation', 'Study Abroad', 'Olympiads'];
 const HERO_BG = `${UP}/2025/12/0N2A0751-2048x1152.jpg`;
@@ -357,7 +359,9 @@ export default function Home() {
       <section className="section">
         <div className="wrap">
           <SectionHead center eyebrow="Take a walk" title={<>Campus <em className="accent">Tour</em></>} />
-          <Reveal className="tour-short"><Video src={`https://youtube.com/shorts/${TOUR_ID}`} portrait /></Reveal>
+          <div className="tour-shorts">
+            {TOUR_SHORTS.map((id, i) => <Reveal key={id} className="tour-short" delay={i * .08}><Video src={`https://youtube.com/shorts/${id}`} portrait /></Reveal>)}
+          </div>
         </div>
       </section>
 

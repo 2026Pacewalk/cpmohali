@@ -1395,7 +1395,8 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
 .hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 
 /* Campus tour: vertical YouTube Short */
-.tour-short { width: min(360px, 100%); margin: 0 auto; }
+.tour-shorts { display: flex; justify-content: center; gap: clamp(16px, 3vw, 32px); flex-wrap: wrap; }
+.tour-short { width: min(340px, 100%); }
 .tour-short .video.portrait { max-height: none; box-shadow: var(--shadow-lg); border: 6px solid #fff; }
 .video.portrait .video-poster img { object-fit: cover; }
 .tour.portrait { width: min(400px, calc((100vh - 120px) * 9 / 16), 100%); }
