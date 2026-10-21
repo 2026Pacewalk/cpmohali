@@ -59,6 +59,9 @@ const life = [
   { img: `${UP}/2025/09/thumb.jpg`, t: 'Cleanliness Activity' },
 ];
 
+// Campus tour: YouTube Short (vertical), used in the hero pop-up and the Campus Tour section
+const TOUR_ID = '0T7u0xO5q4g';
+
 const ROTATE = ['IIT-JEE', 'NEET', 'NDA', 'CA Foundation', 'Study Abroad', 'Olympiads'];
 const HERO_BG = `${UP}/2025/12/0N2A0751-2048x1152.jpg`;
 
@@ -80,9 +83,9 @@ function TourModal({ onClose }) {
   }, [onClose]);
   return (
     <motion.div className="tour-bg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-      <motion.div className="tour" initial={{ scale: .92, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: .95, opacity: 0 }} onClick={e => e.stopPropagation()}>
+      <motion.div className="tour portrait" initial={{ scale: .92, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: .95, opacity: 0 }} onClick={e => e.stopPropagation()}>
         <button className="tour-x" onClick={onClose} aria-label="Close video"><X /></button>
-        <div className="video"><iframe src="https://www.youtube-nocookie.com/embed/qqIIUznuza8?autoplay=1&rel=0" title="Career Point Gurukul campus tour" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>
+        <div className="video portrait"><iframe src={`https://www.youtube-nocookie.com/embed/${TOUR_ID}?autoplay=1&rel=0`} title="Career Point Gurukul campus tour" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>
       </motion.div>
     </motion.div>
   );
@@ -139,7 +142,7 @@ function Hero() {
             <button className="btn gold hx-apply" onClick={openEnquiry}>Apply Now <ArrowRight /></button>
             <button className="hx-play" onClick={() => setTour(true)}>
               <span className="hx-play-ico"><Play fill="currentColor" /></span>
-              <span><b>Watch campus tour</b><small>2 min video</small></span>
+              <span><b>Watch campus tour</b><small>Short video</small></span>
             </button>
           </motion.div>
         </div>
@@ -354,7 +357,7 @@ export default function Home() {
       <section className="section">
         <div className="wrap">
           <SectionHead center eyebrow="Take a walk" title={<>Campus <em className="accent">Tour</em></>} />
-          <Reveal style={{ maxWidth: 1000, margin: '0 auto' }}><Video src="https://youtu.be/qqIIUznuza8" /></Reveal>
+          <Reveal className="tour-short"><Video src={`https://youtube.com/shorts/${TOUR_ID}`} portrait /></Reveal>
         </div>
       </section>
 

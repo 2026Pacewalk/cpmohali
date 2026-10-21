@@ -98,7 +98,7 @@ export function Video({ src, portrait, poster }) {
   const id = ytId(src || '');
   if (id) {
     return (
-      <div className="video">
+      <div className={`video ${portrait ? 'portrait' : ''}`}>
         {on ? (
           <iframe src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`} title="Career Point Gurukul video" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen />
         ) : (

@@ -1393,3 +1393,10 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
 
 /* honeypot field for spam bots: invisible to people */
 .hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+/* Campus tour: vertical YouTube Short */
+.tour-short { width: min(360px, 100%); margin: 0 auto; }
+.tour-short .video.portrait { max-height: none; box-shadow: var(--shadow-lg); border: 6px solid #fff; }
+.video.portrait .video-poster img { object-fit: cover; }
+.tour.portrait { width: min(400px, calc((100vh - 120px) * 9 / 16), 100%); }
+.tour.portrait .video { max-height: none; }
