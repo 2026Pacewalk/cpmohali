@@ -122,7 +122,7 @@ function Hero() {
       <div className="wrap hx-grid">
         <div className="hx-copy">
           <motion.span className="hx-pill" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
-            <i /> Admissions Open 2026-27 · Class 6th – 12th
+            <i /> Admissions Open 2027-28 · Class 6th – 12th
           </motion.span>
           <h1>
             {['Schooling,', 'coaching', '& a home —', 'on one campus.'].map((t, k) => (

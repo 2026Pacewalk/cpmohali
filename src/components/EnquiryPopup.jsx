@@ -133,7 +133,7 @@ export default function EnquiryPopup() {
                 <AnimatePresence mode="wait">
                   {step < 2 ? (
                     <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, y: -10 }}>
-                      <span className="eq-pill"><i />Admission Open 2026</span>
+                      <span className="eq-pill"><i />Admission Open 2027-28</span>
                       <h2 id="eq-title">Request a <em>Call</em></h2>
                       <p className="eq-sub">Share a few details — our admission counsellor will call you back.</p>
 
