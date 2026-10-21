@@ -282,7 +282,7 @@ export default function Home() {
       <Seo slug="home-2" />
       <Hero />
 
-      <Marquee items={['IIT - JEE', 'NEET', 'NDA', 'Commerce', 'Study Abroad', 'Pre - Foundation', 'CBSE Schooling', 'AC Hostels']} />
+      <Marquee items={['IIT - JEE', 'NEET', 'NDA', 'Commerce', 'Study Abroad', 'Pre - Foundation (6th to 10th)', 'CBSE Schooling', 'AC Hostels']} />
 
       {/* Path */}
       <section className="section">
