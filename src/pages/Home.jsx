@@ -64,7 +64,8 @@ const TOUR_ID = '0T7u0xO5q4g';
 // Campus Tour section shows two Shorts side by side (left, right)
 const TOUR_SHORTS = ['JzMI7B9VF9I', TOUR_ID];
 
-const ROTATE = ['IIT-JEE', 'NEET', 'NDA', 'CA Foundation', 'Study Abroad', 'Olympiads'];
+// Exam list from the school's banner: 'Integrated Coaching for IIT-JEE (Main & Adv.) • Pre-Medical • NDA/NTSE • CA Foundation etc.'
+const ROTATE = ['IIT-JEE (Main & Adv.)', 'Pre-Medical', 'NDA / NTSE', 'CA Foundation etc.'];
 const HERO_BG = `${UP}/2025/12/0N2A0751-2048x1152.jpg`;
 
 function useIsNarrow(px = 640) {
@@ -125,12 +126,12 @@ function Hero() {
             <i /> Admissions Open 2027-28 · Class 6th – 12th
           </motion.span>
           <h1>
-            {['Schooling,', 'coaching', '& a home —', 'on one campus.'].map((t, k) => (
-              <motion.span key={t} className={`hx-line ${k === 1 ? 'gold' : ''}`} variants={word} initial="hidden" animate="show" custom={k}>{t} </motion.span>
+            {['New Edge', 'World Class', 'Fully Boarding School'].map((t, k) => (
+              <motion.span key={t} className={`hx-line ${k === 2 ? 'gold' : ''}`} variants={word} initial="hidden" animate="show" custom={k}>{t} </motion.span>
             ))}
           </h1>
           <motion.div className="hx-rotate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .55 }}>
-            <span>Integrated preparation for</span>
+            <span>with Integrated Coaching for</span>
             <span className="hx-word">
               <AnimatePresence mode="wait">
                 <motion.b key={ROTATE[w]} initial={{ y: '100%', opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: '-100%', opacity: 0 }} transition={{ duration: .35 }}>{ROTATE[w]}</motion.b>
