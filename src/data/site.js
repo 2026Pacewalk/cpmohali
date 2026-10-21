@@ -9,7 +9,7 @@ export const site = {
   icon: `${UP}/2025/08/New-Career-Point-Logo-Icon-.png`,
   affiliation: 'CBSE Affiliation No: 1631077',
   phones: ['+91-7087228882', '+91-7087228881'],
-  email: 'info@careerpointgurukul.com',
+  email: 'hellocpgurukulmohali@gmail.com',
   address: 'Landra-Banur Road NH 16, Vill, Tangori, near Chandigarh International Airport, Mohali, Punjab 140601',
   mapEmbed: 'https://maps.google.com/maps?q=Career%20Point%20Gurukul%2C%20Mohali%20-%20Best%20Boarding%20School&t=m&z=13&output=embed&iwloc=near',
   mapLink: 'https://share.google/ZrIjOyE5P9m5052wU',
