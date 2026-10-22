@@ -64,10 +64,19 @@ export const passwordProblem = pw => (typeof pw !== 'string' || pw.length < 8 ? 
 
 /** First boot: create the admin from ADMIN_EMAIL / ADMIN_PASSWORD if no users exist yet. */
 export async function ensureBootstrapAdmin() {
-  const { rows } = await q('SELECT count(*)::int AS n FROM users');
-  if (rows[0].n > 0) return;
   const email = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
   const password = process.env.ADMIN_PASSWORD || '';
+  // One-time credential rotation: with ADMIN_RESET_PASSWORD=1 the ADMIN_EMAIL account is (re)set to
+  // ADMIN_PASSWORD on boot. Remove the flag after that deploy, or every restart would reset it again.
+  if (process.env.ADMIN_RESET_PASSWORD === '1' && email && !passwordProblem(password)) {
+    const hash = await hashPassword(password);
+    const r = await q("UPDATE users SET password_hash = $2, active = TRUE, role = 'admin' WHERE email = $1", [email, hash]);
+    if (!r.rowCount) await q('INSERT INTO users (name, email, password_hash, role) VALUES ($1,$2,$3,$4)', ['Administrator', email, hash, 'admin']);
+    console.log(`Admin password reset from ADMIN_PASSWORD for ${email} — now remove ADMIN_RESET_PASSWORD`);
+    return;
+  }
+  const { rows } = await q('SELECT count(*)::int AS n FROM users');
+  if (rows[0].n > 0) return;
   if (!email || passwordProblem(password)) { console.warn('No users yet: set ADMIN_EMAIL and ADMIN_PASSWORD (8+ chars) to create the first admin.'); return; }
   await q('INSERT INTO users (name, email, password_hash, role) VALUES ($1,$2,$3,$4)', ['Administrator', email, await hashPassword(password), 'admin']);
   console.log(`Created first admin account: ${email}`);
