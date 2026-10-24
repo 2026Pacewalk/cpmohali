@@ -336,7 +336,12 @@ main > .section:not([class*="bg-"]) + .section:not([class*="bg-"]) { padding-top
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Path cards (6 pillars) ---------- */
-.path-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.path-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.path-grid .path-card { aspect-ratio: 3 / 4; }
+.path-grid .path-card .cap { padding-top: 56px; background: linear-gradient(rgba(11,27,63,0), rgba(11,27,63,.95) 62%); }
+.path-card .cap small { display: block; margin-top: 4px; font: 500 .74rem/1.3 var(--sans); color: var(--gold); }
+@media (max-width: 1200px) { .path-grid { grid-template-columns: repeat(3, 1fr); } .path-grid .path-card { aspect-ratio: 350 / 275; } }
+@media (max-width: 640px) { .path-grid .path-card { aspect-ratio: 4 / 5; } }
 .path-card { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 350/275; background: #fff; box-shadow: var(--shadow); }
 .path-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
 .path-card:hover img { transform: scale(1.07); }

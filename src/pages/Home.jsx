@@ -28,11 +28,12 @@ const heroSlides = [
 ];
 
 const paths = [
-  { img: `${UP}/elementor/thumbs/new-slie-rbsln59ipdwh6ywdrimako5df5xwdr9mq6o795sjts.png`, t: 'A well defined path for success', to: '/cp-gurukul/' },
   { img: `${UP}/2025/09/new-sli.png`, t: 'Excellent School Education', to: '/school-2/' },
-  { img: `${UP}/2025/09/Residential.jpg`, t: 'Integrated Coaching by Experts from KOTA', to: '/integrated-coaching/' },
-  { img: `${UP}/2025/09/new4.png`, t: 'Residential facilities', to: '/hostel-facilities/' },
-  { img: `${UP}/2025/09/LIFE-SKILL-DEVELOPMENT.jpg`, t: 'Recreations and Sports', to: '/facility/' },
+  { img: `${UP}/elementor/thumbs/new-slie-rbsln59ipdwh6ywdrimako5df5xwdr9mq6o795sjts.png`, t: 'Integrated Coaching by Experts from Kota', to: '/integrated-coaching/' },
+  { img: `${UP}/2025/09/Residential.jpg`, t: 'AC Hostels for Boys/ Girls', to: '/hostel-facilities/' },
+  { img: `${UP}/2025/09/new4.png`, t: 'Indoor and Outdoor Sports', to: '/facility/' },
+  { img: `${UP}/2025/09/yoga.jpg`, t: 'Yoga/ PT', to: '/facility/' },
+  { img: `${UP}/2025/09/LIFE-SKILL-DEVELOPMENT.jpg`, t: 'Life Skills and Recreation', s: 'Includes Dance, Music, Outings etc.', to: '/life-skill-development/' },
 ];
 
 const streams = ofType('card').slice(0, 6);
@@ -336,7 +337,7 @@ export default function Home() {
             {paths.map((p, i) => (
               <Reveal key={p.t} delay={i * .07}>
                 <Link to={p.to} className="path-card" style={{ display: 'block' }}>
-                  <img src={p.img} alt={p.t} loading="lazy" /><span className="num">0{i + 1}</span><span className="cap">{p.t}</span>
+                  <img src={p.img} alt={p.t} loading="lazy" /><span className="num">0{i + 1}</span><span className="cap">{p.t}{p.s && <small>{p.s}</small>}</span>
                 </Link>
               </Reveal>
             ))}
