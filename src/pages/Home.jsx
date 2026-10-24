@@ -341,9 +341,7 @@ export default function Home() {
                 </Link>
               </Reveal>
             ))}
-          </div>
-          <Reveal className="center" style={{ marginTop: 28 }}><Link to="/life-skill-development/" className="link-arrow">Life skill Development <ArrowRight /></Link></Reveal>
-        </div>
+          </div>        </div>
       </section>
 
       {/* Streams */}
