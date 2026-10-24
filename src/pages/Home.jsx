@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronLeft, ChevronRight, MessageCircle, Sparkles, Phone, Play, Trophy, X } from 'lucide-react';
+import { ArrowRight, BedDouble, ChevronLeft, ChevronRight, GraduationCap, MessageCircle, Music, School, Sparkles, Phone, Play, Trophy, X } from 'lucide-react';
 import pages from '../data/pages.json';
 import { site, UP } from '../data/site';
 import { Seo, Reveal, SectionHead, Stamp, Ring, Video, Faq, Testimonials, ContactSection, BlogSection, useLightbox } from '../components/ui';
@@ -14,7 +14,10 @@ const ofType = t => B.filter(b => b.t === t);
 const galleries = ofType('gallery');
 const uniq = a => [...new Set(a)];
 
+const CAMPUS = `${UP}/2026/10/school-campus.webp`;
 const heroSlides = [
+  // The photo has a caption printed across its top; crop to the building so it never shows half-cut
+  { d: CAMPUS, m: CAMPUS, style: { objectPosition: 'center bottom' }, mStyle: { objectPosition: 'center bottom', transform: 'scale(1.35)', transformOrigin: 'center bottom' }, alt: 'Career Point Gurukul 14 acre lush green campus' },
   { d: `${UP}/2026/08/shared-image.jpg`, m: `${UP}/2026/08/new-banner-mobile.jpeg` },
   { d: `${UP}/2026/08/cp-banner-first-fina.jpeg`, m: `${UP}/2026/08/new-2nd-banner.jpeg` },
   { d: `${UP}/2025/10/Desktop-fully-residential-scaled.jpg`, m: `${UP}/2025/10/square-mobile-fully-residential-school-scaled.jpg` },
@@ -163,7 +166,7 @@ function Hero() {
                   transition={{ type: 'spring', stiffness: 220, damping: 26 }}
                   drag={off === 0 ? 'x' : false} dragConstraints={{ left: 0, right: 0 }} dragElastic={.6}
                   onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 70) go(info.offset.x < 0 ? 1 : -1); }}>
-                  <img src={narrow ? s.m : s.d} alt="Career Point Gurukul Mohali highlights" draggable={false} />
+                  <img src={narrow ? s.m : s.d} alt={s.alt || 'Career Point Gurukul Mohali highlights'} style={narrow ? s.mStyle : s.style} draggable={false} />
                 </motion.div>
               );
             })}
@@ -192,6 +195,45 @@ function Hero() {
       </div>
 
       <AnimatePresence>{tour && <TourModal onClose={() => setTour(false)} />}</AnimatePresence>
+    </section>
+  );
+}
+
+const CAMPUS_FACILITIES = [
+  { icon: School, t: 'School', s: 'CBSE · Class 6th – 12th' },
+  { icon: GraduationCap, t: 'Coaching', s: 'Expert faculty from CP Kota' },
+  { icon: BedDouble, t: 'Hostel', s: 'Fully residential, AC rooms' },
+  { icon: Trophy, t: 'Sports', s: 'Complete sports infrastructure' },
+  { icon: Music, t: 'Recreation', s: 'Music, dance & celebrations' },
+  { icon: Sparkles, t: 'All facilities', s: 'Within one campus' },
+];
+
+function CampusShowcase() {
+  return (
+    <section className="section cs">
+      <div className="wrap">
+        <SectionHead center eyebrow="One Integrated Campus" title={<>Everything within a <em className="accent">14 acre</em> lush green campus</>} />
+        <Reveal className="cs-frame">
+          <img src={CAMPUS} alt="Career Point Gurukul campus building and lawns with students studying" loading="lazy" />
+          <span className="cs-badge"><b>14</b><span>acre<br />campus</span></span>
+          <div className="cs-cap">
+            <small>School + Coaching + Hostel</small>
+            <b>+ Sports + Recreations &amp; all facilities</b>
+          </div>
+        </Reveal>
+        <div className="cs-grid">
+          {CAMPUS_FACILITIES.map(({ icon: Icon, t, s }, k) => (
+            <Reveal key={t} className="cs-item" delay={k * .05}>
+              <span className="cs-ico"><Icon /></span>
+              <span><b>{t}</b><small>{s}</small></span>
+            </Reveal>
+          ))}
+        </div>
+        <div className="cs-ctas">
+          <button className="btn gold" onClick={openEnquiry}>Apply Now <ArrowRight /></button>
+          <Link to="/facility/" className="link-arrow">Explore campus facilities <ArrowRight /></Link>
+        </div>
+      </div>
     </section>
   );
 }
@@ -283,6 +325,8 @@ export default function Home() {
       <Hero />
 
       <Marquee items={['IIT - JEE', 'NEET', 'NDA', 'Commerce', 'Study Abroad', 'Pre - Foundation (6th to 10th)', 'CBSE Schooling', 'AC Hostels']} />
+
+      <CampusShowcase />
 
       {/* Path */}
       <section className="section">
