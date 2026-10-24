@@ -1,6 +1,9 @@
 // Global site data — identical to the live cpmohali.in header/footer
 export const UP = '/wp-content/uploads';
 
+const WHATSAPP = '917087228882';
+const waLink = text => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+
 export const site = {
   name: 'Career Point Gurukul',
   tagline: 'A Unit of Legendary Career Point, Kota',
@@ -13,15 +16,16 @@ export const site = {
   address: 'Landra-Banur Road NH 16, Vill, Tangori, near Chandigarh International Airport, Mohali, Punjab 140601',
   mapEmbed: 'https://maps.google.com/maps?q=Career%20Point%20Gurukul%2C%20Mohali%20-%20Best%20Boarding%20School&t=m&z=13&output=embed&iwloc=near',
   mapLink: 'https://share.google/ZrIjOyE5P9m5052wU',
-  whatsappNumber: '917087228881',
+  whatsappNumber: WHATSAPP,
   feePdf: `${UP}/2025/11/CP-NEW-New-Fee-Structure-PDF-.pdf`,
   playStore: 'https://play.google.com/store/apps/details?id=co.shield.shesw&hl=en&gl=US&pli=1',
+  // All WhatsApp buttons open a chat with +91-7087228882 (see waLink below)
   wa: {
-    register: 'https://wa.link/kvd3td',
-    tour: 'https://wa.link/ht8oio',
-    next: 'https://wa.link/whfkpq',
-    scholarship: 'https://wa.link/9qlhf2',
-    principal: 'https://wa.link/23egu0',
+    register: waLink('Hi, I want to register for admission at Career Point Gurukul.'),
+    tour: waLink('Hi, I would like to book a campus tour of Career Point Gurukul.'),
+    next: waLink('Hi, I would like to know more about Career Point Gurukul.'),
+    scholarship: waLink('Hi, I want to know about the CP Star Scholarship.'),
+    principal: waLink('Hi, I would like to talk to the admissions team at Career Point Gurukul.'),
   },
   socials: [
     { name: 'Facebook', href: 'https://www.facebook.com/cpmohali' },
