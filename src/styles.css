@@ -1308,8 +1308,11 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
 .hx-line.gold { font-style: italic; font-weight: 500; color: var(--gold); }
 .hx-rotate { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: clamp(.95rem, 1.2vw, 1.05rem); color: #aebcdc; margin-bottom: 16px; }
 .hx-word { position: relative; display: inline-grid; overflow: hidden; height: 1.6em; min-width: 9ch; padding: 0 12px; border-radius: 10px; background: var(--red); box-shadow: 0 10px 24px -10px rgba(225,29,42,.8); }
-.hx-word b { display: block; color: #fff; font: 700 1.05em/1.6em var(--sans); white-space: nowrap; }
+.hx-word b { display: block; color: #fff; font: 700 1.05em/1.6em var(--sans); white-space: nowrap; animation: hxWordIn .4s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes hxWordIn { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
 .hx-lede { font-size: .95rem; line-height: 1.65; color: #b8c5e2; max-width: 52ch; margin-bottom: 22px; }
+.hx-lede-key { display: block; margin-top: 10px; padding-left: 12px; border-left: 3px solid var(--gold, #f5c542); }
+.hx-lede-key b { display: block; color: #fff; font-weight: 700; letter-spacing: .02em; }
 .hx-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
 .hx-apply { padding: 14px 24px; font-size: .95rem; }
 .hx-play { display: inline-flex; align-items: center; gap: 12px; background: none; border: 0; color: #fff; text-align: left; }

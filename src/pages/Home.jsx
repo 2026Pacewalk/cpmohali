@@ -133,13 +133,12 @@ function Hero() {
           <motion.div className="hx-rotate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .55 }}>
             <span>with Integrated Coaching for</span>
             <span className="hx-word">
-              <AnimatePresence mode="wait">
-                <motion.b key={ROTATE[w]} initial={{ y: '100%', opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: '-100%', opacity: 0 }} transition={{ duration: .35 }}>{ROTATE[w]}</motion.b>
-              </AnimatePresence>
+              <b key={ROTATE[w]}>{ROTATE[w]}</b>
             </span>
           </motion.div>
           <motion.p className="hx-lede" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }}>
-            Welcome to Career Point Gurukul Mohali, the best boarding school in Punjab — CBSE schooling with expert faculty from Kota, AC hostels and a 14-acre green campus near Chandigarh.
+            Welcome to Career Point Gurukul, Chandigarh, the best fully residential school near Chandigarh, the City Beautiful, with the best integrated career preparation (coaching) by expert faculty from CP Kota for IIT-JEE/ NEET/ NDA/ CA FOUNDATION/ STUDY ABROAD &amp; PRE-FOUNDATION (6th to 12th).
+            <span className="hx-lede-key"><b>School + Coaching + Hostel</b> All facilities within huge 14 acre lush green campus.</span>
           </motion.p>
           <motion.div className="hx-ctas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .75 }}>
             <button className="btn gold hx-apply" onClick={openEnquiry}>Apply Now <ArrowRight /></button>
