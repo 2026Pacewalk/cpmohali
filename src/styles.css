@@ -184,9 +184,11 @@ main > .section:not([class*="bg-"]) + .section:not([class*="bg-"]) { padding-top
 .burger svg { width: 22px; }
 .search-btn { padding: 0; width: 42px; }
 .header nav { margin-right: 6px; }
+/* The full menu plus actions needs more than the 1240px content width */
+.header .wrap { width: min(1440px, 100% - 32px); }
 @media (max-width: 1560px) { .menu > li > a, .menu > li > button { padding: 10px 9px; font-size: .86rem; } .call-btn { display: none; } }
 @media (max-width: 1400px) { .brand img { height: 52px; } }
-@media (max-width: 1120px) {
+@media (max-width: 1279px) {
   .header nav, .header-cta .btn.desktop { display: none; }
   .burger { display: grid; }
   .call-btn { display: inline-flex; }
