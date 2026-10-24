@@ -238,11 +238,11 @@ function CampusShowcase() {
   );
 }
 
-function Marquee({ items, blue }) {
+function Marquee({ items, blue, dur }) {
   const all = [...items, ...items];
   return (
     <div className={`marquee ${blue ? 'blue' : ''}`} aria-hidden>
-      <div className="marquee-track">{all.map((t, i) => <span key={i}>{t}</span>)}</div>
+      <div className="marquee-track" style={dur ? { animationDuration: dur } : undefined}>{all.map((t, i) => <span key={i}>{t}</span>)}</div>
     </div>
   );
 }
@@ -324,7 +324,7 @@ export default function Home() {
       <Seo slug="home-2" />
       <Hero />
 
-      <Marquee items={['IIT - JEE', 'NEET', 'NDA', 'Commerce', 'Study Abroad', 'Pre - Foundation (6th to 10th)', 'CBSE Schooling', 'AC Hostels']} />
+      <Marquee items={['IIT - JEE', 'NEET', 'NDA', 'Commerce', 'Study Abroad', 'Pre - Foundation (6th to 10th)', 'CBSE Schooling', 'Indoor Sports', 'Outdoor Sports', 'Swimming Pool', 'Attached Washroom Boys / Girls AC Hostels']} dur="60s" />
 
       <CampusShowcase />
 
