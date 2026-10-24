@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import {
   ChevronDown, ChevronRight, Menu, X, Phone, Mail, Search, FileText, ArrowRight, CornerDownLeft, MapPin, Megaphone,
   UserRound, MessageSquareQuote, Landmark, School, BookOpenCheck, BedDouble, Sparkles, Flower2, Building, Laptop,
-  Dumbbell, Sun, Images, Clapperboard, Award, Home as HomeIcon, ClipboardList, GraduationCap,
+  Dumbbell, Sun, Images, Clapperboard, Award, Home as HomeIcon, ClipboardList, GraduationCap, Monitor,
 } from 'lucide-react';
 import { nav, site, tel, UP } from '../data/site';
 import { sitemapGroups } from '../data/sitemap';
@@ -52,6 +52,7 @@ const isActive = (item, path) => item.to === path || item.children?.some(c => c.
 /* ---------------- Search palette (Ctrl/⌘ + K) ---------------- */
 // Extra words people search for, per page
 const KEYWORDS = {
+  '/cbt-computer-based-test/': 'cbt computer based test online exam neet 2027 jee nta mock practice',
   '/admission-guidelines/': 'apply admission process documents eligibility refund class 6',
   '/contact/': 'phone call email address map location directions enquiry',
   '/integrated-coaching/': 'iit jee neet nda kota coaching faculty competitive exam',
@@ -138,7 +139,7 @@ function NavItem({ item, path, hovered, setHovered, open, setOpen }) {
       <li onMouseEnter={() => setHovered(item.label)}>
         {item.href
           ? <a href={item.href} target="_blank" rel="noreferrer">{pill}<span>{item.label}</span><em className="pdf">PDF</em></a>
-          : <NavLink to={item.to} end className={({ isActive: a }) => (a ? 'active' : '')}>{pill}<span>{item.label}</span></NavLink>}
+          : <NavLink to={item.to} end title={item.title} className={({ isActive: a }) => (a ? 'active' : '')}>{pill}<span>{item.label}</span>{item.badge && <em className="new-tag">{item.badge}</em>}</NavLink>}
       </li>
     );
   }
@@ -233,7 +234,7 @@ function MobileMenu({ onClose, path, openSearch }) {
                   if (!n.children) {
                     return n.href
                       ? <a key={n.label} className="mm-row" href={n.href} target="_blank" rel="noreferrer"><span className="mm-ri"><FileText /></span>{n.label}<em className="pdf">PDF</em></a>
-                      : <NavLink key={n.label} className="mm-row" to={n.to} end onClick={onClose}><span className="mm-ri">{n.to === '/' ? <HomeIcon /> : <ClipboardList />}</span>{n.label}<ChevronRight className="mm-arrow" /></NavLink>;
+                      : <NavLink key={n.label} className="mm-row" to={n.to} end onClick={onClose}><span className="mm-ri">{n.to === '/' ? <HomeIcon /> : n.badge ? <Monitor /> : <ClipboardList />}</span>{n.title || n.label}{n.badge && <em className="new-tag">{n.badge}</em>}<ChevronRight className="mm-arrow" /></NavLink>;
                   }
                   const isO = open === i;
                   return (

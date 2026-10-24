@@ -8,6 +8,7 @@ import { Contact, PhotoGallery, VideoGallery, DayInGurukul, Certificates, Messag
 import Blog from './pages/Blog';
 import Post from './pages/Post';
 import Sitemap from './pages/Sitemap';
+import CBT from './pages/CBT';
 import { posts } from './components/ui';
 
 // Admin panel is code-split: public visitors never download it
@@ -63,6 +64,7 @@ export default function App() {
         <Route path="day-in-cpgurukul/*" element={<DayInGurukul />} />
         <Route path="certificates/*" element={<Certificates />} />
         <Route path="sitemap/*" element={<Sitemap />} />
+        <Route path="cbt-computer-based-test/*" element={<CBT />} />
         <Route path="blog/*" element={<Blog />} />
         <Route path="category/:cat/*" element={<Category />} />
         <Route path="community-2/*" element={<Navigate to="/" replace />} />

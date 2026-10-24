@@ -36,6 +36,7 @@ export const sitemapGroups = [
       { label: 'Life Skill Development', to: '/life-skill-development/', priority: 0.7 },
       { label: 'Girls Boarding School', to: '/best-boarding-schools-for-girls-in-mohali/', priority: 0.8 },
       { label: 'CLAT / IPMAT', to: '/clat-ipmat/', priority: 0.6 },
+      { label: 'CBT (Computer Based Test)', to: '/cbt-computer-based-test/', priority: 0.8 },
     ],
   },
   {

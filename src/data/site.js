@@ -75,6 +75,7 @@ export const nav = [
       { label: 'Video Gallery', to: '/video-gallery/' },
     ],
   },
+  { label: 'CBT', title: 'CBT (Computer Based Test)', to: '/cbt-computer-based-test/', badge: 'NEW' },
   { label: 'Admission Guidelines', to: '/admission-guidelines/' },
   { label: 'Fee Structure', href: `${UP}/2025/11/CP-NEW-New-Fee-Structure-PDF-.pdf` },
 ];
