@@ -223,15 +223,16 @@ export function Reviews() {
   return (
     <>
       <Seo slug="parents-reviews" title="Parent’s Reviews" />
-      <PageHero title="Parent's Reviews" crumbs={ABOUT} lede="In their own words — families from Punjab, across India and abroad on life at CP Gurukul." image={`${UP}/2025/12/aneeshparents-scaled.jpg`} />
+      <PageHero title="Parent's Reviews" crumbs={ABOUT} lede="In their own words — families from Punjab, across India and abroad on life at CP Gurukul." image={`${UP}/2026/10/aneesh-chopra-family.webp`} />
       <section className="section">
         <div className="wrap reviews">
           {entries.map((e, i) => (
             <Reveal className={`review ${i === 0 ? 'featured' : ''}`} key={i}>
+              {i === 0 && e.img && <img className="review-photo" src={e.img} alt={e.name} loading="lazy" />}
               <div style={{ font: 'italic 700 4rem/0.5 var(--display)', color: 'var(--gold)', height: 30 }}>“</div>
               <h3>{e.title}</h3>
               {e.body.map((p, k) => <p key={k}>{p.replace(/\*/g, '')}</p>)}
-              <div className="who">{e.img && <img src={e.img} alt={e.name} loading="lazy" />}<b>{e.name}</b></div>
+              <div className="who">{e.img && i !== 0 && <img src={e.img} alt={e.name} loading="lazy" />}<b>{e.name}</b></div>
             </Reveal>
           ))}
         </div>
