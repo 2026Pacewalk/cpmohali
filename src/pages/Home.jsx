@@ -323,7 +323,7 @@ export default function Home() {
       <Seo slug="home-2" />
       <Hero />
 
-      <Marquee items={['IIT - JEE', 'NEET', 'NDA', 'Commerce', 'Study Abroad', 'Pre-Foundation (6th to 12th)', 'CBSE Schooling', 'Indoor Sports', 'Outdoor Sports', 'Swimming Pool', 'Attached Washroom Boys / Girls', 'AC Hostels']} dur="60s" />
+      <Marquee items={['IIT - JEE', 'NEET', 'NDA', 'Commerce', 'Study Abroad', 'Pre-Foundation (6th to 12th)', 'CBSE Schooling', 'Indoor Sports', 'Outdoor Sports', 'Swimming Pool', 'Attached Washroom Boys / Girls Hostels', 'AC Hostels']} dur="60s" />
 
       <CampusShowcase />
 
