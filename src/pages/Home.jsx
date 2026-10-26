@@ -18,7 +18,7 @@ const CAMPUS = `${UP}/2026/10/school-campus.webp`;
 const heroSlides = [
   { d: `${UP}/2026/08/shared-image.jpg`, m: `${UP}/2026/08/new-banner-mobile.jpeg` },
   { d: `${UP}/2026/08/cp-banner-first-fina.jpeg`, m: `${UP}/2026/08/new-2nd-banner.jpeg` },
-  { d: `${UP}/2025/10/Desktop-fully-residential-scaled.jpg`, m: `${UP}/2025/10/square-mobile-fully-residential-school-scaled.jpg` },
+  { d: `${UP}/2025/10/Desktop-fully-residential-v2.jpg`, m: `${UP}/2025/10/square-mobile-fully-residential-v2.jpg` },
   { d: `${UP}/2026/08/WhatsApp-Image-2026-08-03-at-1.14.10-PM.jpeg`, m: `${UP}/2025/10/square-mobile-wellness-beyond-academics-yoga-scaled.jpg` },
   { d: `${UP}/2025/10/Desktop-complete-sports-scaled.jpg`, m: `${UP}/2025/10/square-mobile-complete-sports-infra-scaled.jpg` },
   { d: `${UP}/2025/10/Desktop-music-dance-scaled.jpg`, m: `${UP}/2025/10/square-mobile-music-dance-scaled.jpg` },
