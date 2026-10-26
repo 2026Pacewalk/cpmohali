@@ -31,7 +31,7 @@ const paths = [
   { img: `${UP}/2025/09/Residential.jpg`, t: 'AC Hostels for Boys/ Girls', to: '/hostel-facilities/' },
   { img: `${UP}/2025/09/new4.png`, t: 'Indoor and Outdoor Sports', to: '/facility/' },
   { img: `${UP}/2025/09/yoga.jpg`, t: 'Yoga/ PT', to: '/facility/' },
-  { img: `${UP}/2025/09/LIFE-SKILL-DEVELOPMENT.jpg`, t: 'Life Skills and Recreation', s: 'Includes Dance, Music, Outings etc.', to: '/life-skill-development/' },
+  { img: `${UP}/2025/09/LIFE-SKILL-DEVELOPMENT.jpg`, t: 'Life Skills and Recreation', to: '/life-skill-development/' },
 ];
 
 const streams = ofType('card').slice(0, 6);
