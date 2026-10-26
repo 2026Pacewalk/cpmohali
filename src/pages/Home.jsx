@@ -67,7 +67,7 @@ const TOUR_ID = '0T7u0xO5q4g';
 const TOUR_SHORTS = ['JzMI7B9VF9I', TOUR_ID];
 
 // Exam list from the school's banner (NTSE dropped at the school's request)
-const ROTATE = ['IIT-JEE (Main & Adv.)', 'Pre-Medical', 'NDA', 'CA Foundation etc.'];
+const ROTATE = ['IIT-JEE (Main & Adv.)', 'NEET (Pre-medical)', 'NDA', 'CA Foundation etc.'];
 const HERO_BG = `${UP}/2025/12/0N2A0751-2048x1152.jpg`;
 
 function useIsNarrow(px = 640) {
