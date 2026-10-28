@@ -28,7 +28,7 @@ const heroSlides = [
 const paths = [
   { img: `${UP}/2025/09/new-sli.png`, t: 'Excellent School Education', to: '/school-2/' },
   { img: `${UP}/elementor/thumbs/new-slie-rbsln59ipdwh6ywdrimako5df5xwdr9mq6o795sjts.png`, t: 'Integrated Coaching by Experts from Kota', to: '/integrated-coaching/' },
-  { img: `${UP}/2025/09/Residential.jpg`, t: 'AC Hostels for Boys/ Girls', to: '/hostel-facilities/' },
+  { img: `${UP}/2026/10/boys-hostel-building.webp`, t: 'AC Hostels for Boys/ Girls', to: '/hostel-facilities/' },
   { img: `${UP}/2025/09/new4.png`, t: 'Indoor and Outdoor Sports', to: '/facility/' },
   { img: `${UP}/2025/09/yoga.jpg`, t: 'Yoga/ PT', to: '/facility/' },
   { img: `${UP}/2025/09/LIFE-SKILL-DEVELOPMENT.jpg`, t: 'Life Skills and Recreation', to: '/life-skill-development/' },
