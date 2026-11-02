@@ -11,6 +11,7 @@ import api from './api.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.resolve(__dirname, '../dist');
 const PORT = Number(process.env.PORT) || 8080;
+const HOST = process.env.HOST; // e.g. 127.0.0.1 behind Nginx on the VPS; unset = all interfaces (Railway)
 
 const app = express();
 app.set('trust proxy', true); // Railway sits behind a proxy: use X-Forwarded-For for req.ip
@@ -47,4 +48,4 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 
 await migrate();
 await ensureBootstrapAdmin();
-app.listen(PORT, () => console.log(`CP Gurukul server listening on :${PORT}`));
+app.listen(PORT, HOST, () => console.log(`CP Gurukul server listening on ${HOST || ''}:${PORT}`));
