@@ -175,10 +175,6 @@ function Hero() {
             <div className="hx-dots">{heroSlides.map((_, k) => <button key={k} className={k === i ? 'on' : ''} onClick={() => setI(k)} aria-label={`Slide ${k + 1}`}>{k === i && !paused && <span key={i} className="fill" />}</button>)}</div>
             <button onClick={() => go(1)} aria-label="Next slide"><ChevronRight /></button>
           </div>
-          <motion.div className="hx-toast" initial={{ opacity: 0, y: 20, scale: .9 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 1.1, type: 'spring' }}>
-            <span className="hx-toast-ico"><Trophy /></span>
-            <span><small>NEET 2026 achievers</small><b>Ankita · 624/720</b></span>
-          </motion.div>
           <Stamp className="hx-stamp" />
         </motion.div>
       </div>
