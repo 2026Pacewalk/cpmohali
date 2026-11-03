@@ -47,7 +47,7 @@ export function toUnits(blocks) {
     if (b.t === 'img') {
       const run = []; let j = i;
       while (blocks[j]?.t === 'img') run.push(blocks[j++].v);
-      units.push(run.length > 1 ? { u: 'imgs', items: run } : { u: 'img', v: run[0], alt: b.alt }); i = j; continue;
+      units.push(run.length > 1 ? { u: 'imgs', items: run } : { u: 'img', v: run[0], alt: b.alt, below: b.below }); i = j; continue;
     }
     if (b.t === 'gallery') {
       const run = []; let j = i;
@@ -288,10 +288,12 @@ export default function Blocks({ blocks, skipFirstHeading, prose }) {
       const img = imgUnits[0];
       const rest = s.units.filter(u => u !== img && !TEXTY.includes(u.u));
       const side = splitSide++ % 2;
+      // An img block marked `below: true` stays under the text when the split stacks on phones
+      const mediaLast = !!img.below;
       return (
         <section className={`section ${bg}`} key={idx}>
           <div className="wrap">
-            <div className={`split ${side ? 'rev' : ''}`}>
+            <div className={`split ${side ? 'rev' : ''} ${mediaLast ? 'media-last' : ''}`}>
               <Reveal className="split-media" y={40}><img src={img.v} alt={img.alt || s.heading || ''} loading="lazy" /></Reveal>
               <div className="text-col">{Head}<Reveal>{textUnits.map((u, k) => <Unit key={k} u={u} />)}</Reveal></div>
             </div>

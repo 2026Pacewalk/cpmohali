@@ -540,11 +540,12 @@ main > .section:not([class*="bg-"]) + .section:not([class*="bg-"]) { padding-top
 
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 72px); align-items: center; }
 .split.rev .split-media { order: 2; }
+.split.media-last .split-media { justify-self: center; width: min(100%, 300px); }
 .split-media { position: relative; }
 .split-media img { width: 100%; border-radius: 26px; box-shadow: var(--shadow-lg); object-fit: cover; max-height: 620px; }
 .split-media::before { content: ''; position: absolute; inset: 22px -22px -22px 22px; border-radius: 26px; border: 2px solid var(--gold); z-index: -1; }
 .split.rev .split-media::before { inset: 22px 22px -22px -22px; }
-@media (max-width: 900px) { .split { grid-template-columns: 1fr; } .split.rev .split-media { order: 0; } .split-media::before { display: none; } }
+@media (max-width: 900px) { .split { grid-template-columns: 1fr; } .split.rev .split-media { order: 0; } .split.media-last .split-media { order: 2; } .split-media::before { display: none; } }
 
 .checklist { list-style: none; padding: 0; margin: 0 0 1em; display: grid; gap: 10px; }
 .checklist.cols { grid-template-columns: repeat(2, 1fr); gap: 12px 24px; }
