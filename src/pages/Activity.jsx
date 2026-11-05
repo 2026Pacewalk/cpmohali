@@ -81,8 +81,7 @@ const PAGES = {
 
   yoga: {
     seo: { title: 'Yoga & Physical Training (PT)', description: 'Yoga and Physical Training at CP Gurukul Chandigarh — building strong bodies and focused minds through flexibility, mindful breathing, strength, stamina and discipline.' },
-    title: 'Yoga & Physical Training',
-    lede: 'Building Strong Bodies and Focused Minds',
+    title: 'Yoga & Physical Training – Building Strong Bodies and Focused Minds',
     hero: `${UP}/2025/09/yoga.jpg`,
     intro: {
       heading: 'A Healthy Mind Begins with a Healthy Body',
