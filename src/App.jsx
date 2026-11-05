@@ -9,6 +9,7 @@ import Blog from './pages/Blog';
 import Post from './pages/Post';
 import Sitemap from './pages/Sitemap';
 import CBT from './pages/CBT';
+import { SportsPage, YogaPage } from './pages/Activity';
 import { posts } from './components/ui';
 
 // Admin panel is code-split: public visitors never download it
@@ -65,6 +66,8 @@ export default function App() {
         <Route path="certificates/*" element={<Certificates />} />
         <Route path="sitemap/*" element={<Sitemap />} />
         <Route path="cbt-computer-based-test/*" element={<CBT />} />
+        <Route path="indoor-outdoor-sports/*" element={<SportsPage />} />
+        <Route path="yoga-physical-training/*" element={<YogaPage />} />
         <Route path="blog/*" element={<Blog />} />
         <Route path="category/:cat/*" element={<Category />} />
         <Route path="community-2/*" element={<Navigate to="/" replace />} />

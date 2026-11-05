@@ -46,6 +46,8 @@ export const sitemapGroups = [
       { label: 'Student Life', to: '/facility-copy/', priority: 0.7 },
       { label: 'Technology Support', to: '/technology-support/', priority: 0.6 },
       { label: 'Facilities at Gurukul', to: '/facility/', priority: 0.7 },
+      { label: 'Indoor & Outdoor Sports', to: '/indoor-outdoor-sports/', priority: 0.7 },
+      { label: 'Yoga & Physical Training', to: '/yoga-physical-training/', priority: 0.7 },
       { label: 'A Day in Gurukul', to: '/day-in-cpgurukul/', priority: 0.7 },
     ],
   },

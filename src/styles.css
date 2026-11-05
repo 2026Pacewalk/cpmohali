@@ -1499,3 +1499,36 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
 em.new-tag { margin-left: 6px; padding: 1px 6px; border-radius: 6px; background: var(--red); color: #fff; font-style: normal; font-size: .62rem; font-weight: 800; letter-spacing: .05em; vertical-align: middle; }
 @media (max-width: 900px) { .cbt-intro { grid-template-columns: 1fr; } .cbt-facts { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .cbt-body { grid-template-columns: 1fr; } .cbt-pal { border-left: 0; border-top: 1px solid var(--line); } .cbt-pal div { grid-template-columns: repeat(10, 1fr); } .cbt-vs { grid-template-columns: 1fr; } }
+
+/* ===== Activity pages (Sports, Yoga & PT) ===== */
+.ac-h2 { font-size: clamp(1.5rem, 2.6vw, 2.2rem); margin: 6px 0 14px; }
+.text-col .ac-label { margin-top: 16px; font-weight: 700; color: var(--ink); }
+.ac-list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+.ac-list li { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: var(--radius-sm); background: #fff; border: 1px solid var(--line); }
+.bg-white .ac-list li { background: var(--paper); }
+.ac-list svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: #16a34a; }
+.ac-list b { color: var(--ink); }
+.ac-closing { margin-top: 16px; padding-left: 12px; border-left: 3px solid var(--gold); font-style: italic; color: var(--muted); }
+.ac-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.ac-pillar { display: flex; flex-direction: column; gap: 6px; padding: 22px 18px; border-radius: var(--radius); background: var(--paper); border: 1px solid var(--line); transition: transform .3s, border-color .3s; }
+.ac-pillar:hover { transform: translateY(-4px); border-color: var(--gold); }
+.ac-num { font: 700 1.6rem/1 var(--display); color: var(--red); }
+.ac-pillar b { font-size: 1.05rem; color: var(--ink); }
+.ac-pillar small { color: var(--muted); font-size: .88rem; line-height: 1.5; }
+.ac-lesson-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.ac-lesson { padding: 20px 16px; border-radius: var(--radius-sm); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
+.ac-lesson b { display: block; margin-bottom: 6px; color: var(--gold); font: 700 1.15rem var(--display); }
+.ac-lesson small { color: #c9d4ee; font-size: .86rem; line-height: 1.5; }
+.ac-lessons .head { margin-inline: auto; }
+.ac-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.ac-note { overflow: hidden; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.ac-note img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.ac-note > div { padding: 22px; }
+.ac-note h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--ink); }
+.ac-note p { color: var(--text); font-size: .96rem; }
+.ac-why { max-width: 820px; margin: 0 auto; display: grid; gap: 10px; }
+.ac-why > div { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: var(--radius-sm); background: var(--paper); border: 1px solid var(--line); }
+.ac-why svg { flex: none; width: 20px; height: 20px; color: #16a34a; margin-top: 2px; }
+.ac-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+@media (max-width: 1000px) { .ac-pillars { grid-template-columns: repeat(2, 1fr); } .ac-lesson-grid { grid-template-columns: repeat(2, 1fr); } .ac-notes { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .ac-lesson-grid { grid-template-columns: 1fr; } .ac-pillar { padding: 16px 14px; } }

@@ -60,6 +60,8 @@ const KEYWORDS = {
   '/hostel-facilities/': 'hostel rooms boarding residential girls boys security',
   '/hostel/': 'hostel rooms mess food laundry',
   '/best-boarding-schools-for-girls-in-mohali/': 'girls hostel safety boarding',
+  '/indoor-outdoor-sports/': 'sports games football basketball cricket volleyball badminton table tennis chess skating swimming pool',
+  '/yoga-physical-training/': 'yoga pt physical training fitness exercise meditation breathing wellness',
   '/facility/': 'labs pool swimming gym sports library smart class medical',
   '/facilities-at-gurukul-2/': 'labs pool swimming gym sports library',
   '/day-in-cpgurukul/': 'routine timetable schedule daily',
