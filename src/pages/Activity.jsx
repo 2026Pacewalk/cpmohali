@@ -14,7 +14,7 @@ const PAGES = {
     lede: 'Building Fitness, Confidence & Team Spirit',
     hero: `${UP}/2026/10/badminton-court.webp`,
     intro: {
-      heading: 'Indoor & Outdoor Sports Facilities at Career Point Gurukul',
+      heading: 'Indoor & Outdoor Sports Facilities at Career Point Gurukul – Building Fitness, Confidence & Team Spirit',
       text: ["At Career Point Gurukul, we believe that education extends beyond classrooms and academic achievements. Sports and physical activities play an important role in developing a student's personality, discipline and overall well-being. Our campus encourages students to participate in indoor and outdoor sports, helping them maintain an active lifestyle while learning the values of teamwork, perseverance and sportsmanship. Through structured physical activities and recreational opportunities, students get an environment where they can discover their interests, build confidence and grow stronger both physically and mentally."],
       img: `${UP}/2026/10/sports-recreation-collage.webp`,
     },
