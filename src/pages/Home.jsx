@@ -61,10 +61,8 @@ const life = [
   { img: `${UP}/2025/09/thumb.jpg`, t: 'Cleanliness Activity' },
 ];
 
-// Campus tour: YouTube Short (vertical), used in the hero pop-up and the Campus Tour section
-const TOUR_ID = '0T7u0xO5q4g';
-// Campus Tour section shows two Shorts side by side (left, right)
-const TOUR_SHORTS = ['JzMI7B9VF9I', TOUR_ID];
+// Campus tour: the full India News Point school tour, used in the hero pop-up and the Campus Tour section
+const TOUR_ID = 'j1TnhV8_CzM';
 
 // Exam list from the school's banner (NTSE dropped at the school's request)
 const ROTATE = ['IIT-JEE (Main & Adv.)', 'NEET (Pre-medical)', 'NDA', 'CA Foundation etc.'];
@@ -88,9 +86,9 @@ function TourModal({ onClose }) {
   }, [onClose]);
   return (
     <motion.div className="tour-bg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-      <motion.div className="tour portrait" initial={{ scale: .92, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: .95, opacity: 0 }} onClick={e => e.stopPropagation()}>
+      <motion.div className="tour" initial={{ scale: .92, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: .95, opacity: 0 }} onClick={e => e.stopPropagation()}>
         <button className="tour-x" onClick={onClose} aria-label="Close video"><X /></button>
-        <div className="video portrait"><iframe src={`https://www.youtube-nocookie.com/embed/${TOUR_ID}?autoplay=1&rel=0`} title="Career Point Gurukul campus tour" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>
+        <div className="video"><iframe src={`https://www.youtube-nocookie.com/embed/${TOUR_ID}?autoplay=1&rel=0`} title="Career Point Gurukul campus tour" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>
       </motion.div>
     </motion.div>
   );
@@ -146,7 +144,7 @@ function Hero() {
             <button className="btn gold hx-apply" onClick={openEnquiry}>Apply Now <ArrowRight /></button>
             <button className="hx-play" onClick={() => setTour(true)}>
               <span className="hx-play-ico"><Play fill="currentColor" /></span>
-              <span><b>Watch campus tour</b><small>Short video</small></span>
+              <span><b>Watch campus tour</b><small>Full video</small></span>
             </button>
           </motion.div>
         </div>
@@ -396,9 +394,7 @@ export default function Home() {
       <section className="section">
         <div className="wrap">
           <SectionHead center eyebrow="Take a walk" title={<>Campus <em className="accent">Tour</em></>} />
-          <div className="tour-shorts">
-            {TOUR_SHORTS.map((id, i) => <Reveal key={id} className="tour-short" delay={i * .08}><Video src={`https://youtube.com/shorts/${id}`} portrait /></Reveal>)}
-          </div>
+          <Reveal className="tour-full"><Video src={`https://youtu.be/${TOUR_ID}`} /></Reveal>
         </div>
       </section>
 

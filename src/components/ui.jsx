@@ -103,7 +103,10 @@ export function Video({ src, portrait, poster }) {
           <iframe src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`} title="Career Point Gurukul video" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen />
         ) : (
           <button className="video-poster" onClick={() => setOn(true)} aria-label="Play video">
-            <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" />
+            <img src={`https://i.ytimg.com/vi/${id}/${portrait ? 'hqdefault' : 'maxresdefault'}.jpg`} alt="" loading="lazy"
+              onError={e => { if (!e.currentTarget.src.endsWith('/hqdefault.jpg')) e.currentTarget.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`; }}
+              // YouTube answers a missing HD thumbnail with a 120px placeholder rather than an error
+              onLoad={e => { const im = e.currentTarget; if (im.naturalWidth <= 120 && !im.src.endsWith('/hqdefault.jpg')) im.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`; }} />
             <span className="play"><Play fill="currentColor" /></span>
           </button>
         )}
