@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, BedDouble, ChevronLeft, ChevronRight, GraduationCap, MessageCircle, Music, School, Sparkles, Phone, Play, Trophy, X } from 'lucide-react';
+import { ArrowRight, BedDouble, ChevronLeft, ChevronRight, GraduationCap, MessageCircle, Music, School, Sparkles, Play, Trophy, X } from 'lucide-react';
 import pages from '../data/pages.json';
 import { site, UP } from '../data/site';
 import { Seo, Reveal, SectionHead, Stamp, Ring, Video, Faq, Testimonials, ContactSection, BlogSection, useLightbox } from '../components/ui';
@@ -255,39 +255,6 @@ function Results() {
   );
 }
 
-function Scholarship() {
-  return (
-    <section className="section">
-      <div className="wrap">
-        <Reveal className="sch">
-          <div className="sch-copy">
-            <div>
-              <span className="eyebrow"><Sparkles size={14} /> CP Star Scholarship</span>
-              <h2>Excellence Rewarded: <em>CP Star Scholarship 2026</em></h2>
-              <div className="sch-big"><b>100%</b><span>Scholarship<br />upto</span><i /><b>₹1 Cr</b><span>Rewards<br />worth</span></div>
-              <ul className="sch-tags">{['IIT - JEE', 'NEET', 'NDA', 'Foundation'].map(t => <li key={t}>{t}</li>)}</ul>
-            </div>
-            <div>
-            <div className="sch-dates">
-              {[['Phase I', 'Oct', '11'], ['Phase II', 'Nov', '11']].map(([p, m, d]) => (
-                <div className="sch-date" key={p}>
-                  <span className="cal"><small>{m}</small><b>{d}</b></span>
-                  <span><small>{p}</small><b>{m === 'Oct' ? 'October' : 'November'} {d}th, 2026</b><em>Offline exam</em></span>
-                </div>
-              ))}
-            </div>
-            <div className="btn-row">
-              <a className="btn gold" href={site.wa.scholarship} target="_blank" rel="noreferrer"><WhatsApp /> Claim Your Scholarship</a>
-              <a className="btn ghost" href="tel:+917087228881"><Phone size={18} /> 70872-28881</a>
-            </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 function LifeGrid() {
   const [open, lb] = useLightbox(life.map(l => l.img));
   return (
@@ -462,7 +429,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Scholarship />
 
       {/* Life beyond classrooms */}
       <section className="section bg-ink">
