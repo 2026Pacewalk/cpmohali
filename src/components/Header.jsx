@@ -42,7 +42,6 @@ const FEATURE = {
 };
 const TICKER = [
   'Admissions open for the 2027-28 session — Class 6th onwards',
-  'CP Star Scholarship 2026 · Phase I: 11 October · Phase II: 11 November',
   'Integrated IIT-JEE, NEET & NDA coaching by expert faculty from Kota',
   'Separate AC hostels for boys & girls with 24×7 security',
 ];
