@@ -255,9 +255,7 @@ function Results() {
   );
 }
 
-const SCH = [`${UP}/2026/07/horizontal-oct-and-nov-banner.jpeg`, `${UP}/2026/07/square-new-dates.jpeg`];
 function Scholarship() {
-  const [open, lb] = useLightbox(SCH);
   return (
     <section className="section">
       <div className="wrap">
@@ -284,12 +282,7 @@ function Scholarship() {
             </div>
             </div>
           </div>
-          <div className="sch-media">
-            <button onClick={() => open(0)} aria-label="View scholarship banner"><img src={SCH[0]} alt="CP Star Scholarship 2026 – Phase I & II dates" loading="lazy" /></button>
-            <button onClick={() => open(1)} aria-label="View scholarship poster"><img src={SCH[1]} alt="CP Star – Career Point Scholarship Exam" loading="lazy" /></button>
-          </div>
         </Reveal>
-        {lb}
       </div>
     </section>
   );

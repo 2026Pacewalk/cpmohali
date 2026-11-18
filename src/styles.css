@@ -854,6 +854,7 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
 .sch-media img { width: 100%; height: auto; display: block; }
 .sch-copy { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: end; margin-bottom: clamp(28px, 4vw, 44px); }
 .sch-copy .sch-tags { margin-bottom: 0; }
+.sch-copy:last-child { margin-bottom: 0; }
 @media (max-width: 960px) { .sch-copy { grid-template-columns: 1fr; align-items: start; } }
 @media (max-width: 640px) { .sch-dates { grid-template-columns: 1fr; } .sch-media { grid-template-columns: 1fr; } .sch-media button:last-child { max-width: 360px; } }
 
