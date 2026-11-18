@@ -1359,8 +1359,6 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
 .faq-compact .faq-item { border-radius: 12px; }
 @media (max-width: 860px) { .faq-compact { grid-template-columns: 1fr; } }
 
-.faq-ask { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.faq-ask h3 { margin: 0; font-size: 1rem; font-weight: 500; }
 
 .eq-group.err .eq-chipset button { border-color: rgba(225,29,42,.45); }
 .eq-group small.eq-err { display: block; margin-top: 5px; color: var(--red); font-size: .76rem; }

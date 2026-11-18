@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, BedDouble, ChevronLeft, ChevronRight, GraduationCap, MessageCircle, Music, School, Sparkles, Play, Trophy, X } from 'lucide-react';
+import { ArrowRight, BedDouble, ChevronLeft, ChevronRight, GraduationCap, Music, School, Sparkles, Play, Trophy, X } from 'lucide-react';
 import pages from '../data/pages.json';
 import { site, UP } from '../data/site';
 import { Seo, Reveal, SectionHead, Stamp, Ring, Video, Faq, Testimonials, ContactSection, BlogSection, useLightbox } from '../components/ui';
@@ -474,10 +474,6 @@ export default function Home() {
         <div className="wrap">
           <div className="head-row">
             <SectionHead eyebrow="FAQ" title={<>Frequently asked <em className="accent">Questions</em></>} />
-            <Reveal className="faq-ask">
-              <h3>Still have Questions?</h3>
-              <a className="btn" href={site.wa.principal} target="_blank" rel="noreferrer"><MessageCircle /> Chat with principal directly!</a>
-            </Reveal>
           </div>
           <Reveal className="faq-compact">
             <Faq items={faqs.slice(0, Math.ceil(faqs.length / 2))} />
