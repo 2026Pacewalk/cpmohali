@@ -17,7 +17,7 @@ export const site = {
   mapEmbed: 'https://maps.google.com/maps?q=Career%20Point%20Gurukul%2C%20Mohali%20-%20Best%20Boarding%20School&t=m&z=13&output=embed&iwloc=near',
   mapLink: 'https://share.google/ZrIjOyE5P9m5052wU',
   whatsappNumber: WHATSAPP,
-  feePdf: `${UP}/2025/11/CP-NEW-New-Fee-Structure-PDF-.pdf`,
+  feePdf: `${UP}/2026/11/CP-Gurukul-Fee-Structure-2027-28.pdf`,
   playStore: 'https://play.google.com/store/apps/details?id=co.shield.shesw&hl=en&gl=US&pli=1',
   // All WhatsApp buttons open a chat with +91-7087228882 (see waLink below)
   wa: {
@@ -81,7 +81,7 @@ export const nav = [
   },
   { label: 'CBT', title: 'CBT (Computer Based Test)', to: '/cbt-computer-based-test/', badge: 'NEW' },
   { label: 'Admission Guidelines', to: '/admission-guidelines/' },
-  { label: 'Fee Structure', href: `${UP}/2025/11/CP-NEW-New-Fee-Structure-PDF-.pdf` },
+  { label: 'Fee Structure', href: site.feePdf },
 ];
 
 export const footerLinks = [
